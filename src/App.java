@@ -4,10 +4,13 @@ public class App {
     static Scanner sc = new Scanner(System.in);
     static String nombre = "";
     static double nota1 = -1, nota2 = -1, nota3 = -1;
+    static String estado;
     public static void main(String[] args) throws Exception {
-        mostrarMenu();
+        //mostrarMenu();
         registrarEstudiante();
-        mostrarInformacionEstudiante();
+        //mostrarInformacionEstudiante();
+        mostrarResumen();
+
     }
 
     static void mostrarMenu(){
@@ -75,7 +78,6 @@ public class App {
             System.out.println("Nota 1: " + nota1);
             System.out.println("Nota 2: " + nota2);
             System.out.println("Nota 3: " + nota3);
-            System.out.printf("Promedio: %.2f%n",calcularPromedio());
         }else{
             System.out.println("No hay datos de estudiante registrados actualmente.");
         }
@@ -89,5 +91,21 @@ public class App {
             System.out.println("No hay notas registradas para calcular promedio.");
         }
         return promedio;
+    }
+
+    static void mostrarResumen(){
+        System.out.println("--- Resumen del estudiante ---");
+        System.out.println("Nombre del estudiante: " + nombre);
+        System.out.println("Nota 1: " + nota1);
+        System.out.println("Nota 2: " + nota2);
+        System.out.println("Nota 3: " + nota3);
+        System.out.printf("Promedio: %.2f%n",calcularPromedio());
+        setEstado();
+        System.out.printf("Estado: " + estado);
+    }
+
+    public static void setEstado() {
+        double promedio = calcularPromedio();
+        estado = (promedio >= 60) ? "Aprobado" : "Reprobado";
     }
 }
