@@ -75,10 +75,19 @@ public class App {
             System.out.println("Nota 1: " + nota1);
             System.out.println("Nota 2: " + nota2);
             System.out.println("Nota 3: " + nota3);
+            System.out.printf("Promedio: %.2f%n",calcularPromedio());
         }else{
             System.out.println("No hay datos de estudiante registrados actualmente.");
         }
-        
-        
+    }
+
+    static double calcularPromedio(){
+        double promedio = -1;
+        if (nota3 != -1) {
+            promedio = (nota1+nota2+nota3) / 3;
+        }else{
+            System.out.println("No hay notas registradas para calcular promedio.");
+        }
+        return promedio;
     }
 }
