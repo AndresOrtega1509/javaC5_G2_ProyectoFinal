@@ -7,6 +7,7 @@ public class App {
     public static void main(String[] args) throws Exception {
         mostrarMenu();
         registrarEstudiante();
+        mostrarInformacionEstudiante();
     }
 
     static void mostrarMenu(){
@@ -65,5 +66,19 @@ public class App {
 
     static boolean esNotaValida(double nota){
         return nota >= 0 && nota <= 100;
+    }
+
+    static void mostrarInformacionEstudiante(){
+        if (nota1 != -1) {
+            System.out.println("--- Información estudiante ---");
+            System.out.println("Nombre del estudiante: " + nombre);
+            System.out.println("Nota 1: " + nota1);
+            System.out.println("Nota 2: " + nota2);
+            System.out.println("Nota 3: " + nota3);
+        }else{
+            System.out.println("No hay datos de estudiante registrados actualmente.");
+        }
+        
+        
     }
 }
