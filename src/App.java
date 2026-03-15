@@ -2,14 +2,15 @@ import java.util.Scanner;
 
 public class App {
     static Scanner sc = new Scanner(System.in);
-    static String nombre = "";
+    static String nombre = "N/A";
     static double nota1 = -1, nota2 = -1, nota3 = -1;
-    static String estado;
+    static String estado = "N/A";
     public static void main(String[] args) throws Exception {
         //mostrarMenu();
         registrarEstudiante();
         //mostrarInformacionEstudiante();
         mostrarResumen();
+        limpiarDatos();
 
     }
 
@@ -43,7 +44,7 @@ public class App {
     }
 
     static boolean verificarEstudianteRegistrado(){
-        if (!nombre.equals("")) {
+        if (!nombre.equals("N/A")) {
             System.out.print("Ya hay un estudiante registrado. ¿Desea sobrescribir los datos? (s/n): ");
             String respuesta = sc.nextLine();
             if (!respuesta.equalsIgnoreCase("s")) {
@@ -107,5 +108,14 @@ public class App {
     public static void setEstado() {
         double promedio = calcularPromedio();
         estado = (promedio >= 60) ? "Aprobado" : "Reprobado";
+    }
+
+    static void limpiarDatos(){
+        nombre = "N/A";
+        nota1 = -1;
+        nota2 = -1;
+        nota3 = -1;
+        estado = "N/A";
+        System.out.println("Los datos del estudiante actual han sido borrados exitosamente.");
     }
 }
