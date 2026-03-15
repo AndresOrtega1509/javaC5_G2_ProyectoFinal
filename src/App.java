@@ -6,12 +6,40 @@ public class App {
     static double nota1 = -1, nota2 = -1, nota3 = -1;
     static String estado = "N/A";
     public static void main(String[] args) throws Exception {
-        //mostrarMenu();
-        registrarEstudiante();
-        //mostrarInformacionEstudiante();
-        mostrarResumen();
-        limpiarDatos();
+        int opcion;
+        do{
+            mostrarMenu();
+            opcion = sc.nextInt();
+            sc.nextLine(); //Limpiar el buffer
+            switch (opcion) {
+                case 1:
+                    registrarEstudiante();
+                    break;
+                case 2:
+                    mostrarInformacionEstudiante();
+                    break;
+                case 3:
+                    double promedio = calcularPromedio();
+                    if (promedio != -1) {
+                        System.out.printf("El promedio de notas es: %.2f%n", promedio);
+                    }
+                    break;
+                case 4:
+                    mostrarResumen();
+                    break;
+                case 5:
+                    limpiarDatos();
+                    break;
+                case 0:
+                    System.out.println("Saliendo del sistema...");
+                    sc.close();
+                    break;
+                default:
+                    System.out.println("Ingrese una opción valida. Intentelo nuevamente.");
+                    break;
+            }
 
+        }while(opcion != 0);
     }
 
     static void mostrarMenu(){
@@ -37,7 +65,6 @@ public class App {
             nota3 = solicitarNota(3);
             sc.nextLine(); // Limpiar el buffer
             System.out.println("Datos del estudiante registrados exitosamente.");
-            sc.close();
         }else {
             System.out.println("Registro de estudiante cancelado.");
         }
@@ -48,10 +75,9 @@ public class App {
             System.out.print("Ya hay un estudiante registrado. ¿Desea sobrescribir los datos? (s/n): ");
             String respuesta = sc.nextLine();
             if (!respuesta.equalsIgnoreCase("s")) {
-                sc.close();
+                
                 return false;
             }
-            sc.close();
         }
         return true;
     }
@@ -95,14 +121,18 @@ public class App {
     }
 
     static void mostrarResumen(){
-        System.out.println("--- Resumen del estudiante ---");
-        System.out.println("Nombre del estudiante: " + nombre);
-        System.out.println("Nota 1: " + nota1);
-        System.out.println("Nota 2: " + nota2);
-        System.out.println("Nota 3: " + nota3);
-        System.out.printf("Promedio: %.2f%n",calcularPromedio());
-        setEstado();
-        System.out.printf("Estado: " + estado);
+        if (!nombre.equals("N/A")) {
+            System.out.println("--- Resumen del estudiante ---");
+            System.out.println("Nombre del estudiante: " + nombre);
+            System.out.println("Nota 1: " + nota1);
+            System.out.println("Nota 2: " + nota2);
+            System.out.println("Nota 3: " + nota3);
+            System.out.printf("Promedio: %.2f%n",calcularPromedio());
+            setEstado();
+            System.out.println("Estado: " + estado);
+        }else{
+            System.out.println("No hay datos registrados para mostrar resumen del estudiante.");
+        }
     }
 
     public static void setEstado() {
